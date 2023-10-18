@@ -1,28 +1,27 @@
+# Raspberry Pi + MG90S Servo PWM Control Python Code
+#
+#
 import RPi.GPIO as GPIO
 import time
 
-GPIO.setmode(GPIO.BOARD)
+# setup the GPIO pin for the servo
+servo_pin = 22
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(servo_pin,GPIO.OUT)
 
-GPIO.setup(22,50)
+# setup PWM process
+pwm = GPIO.PWM(servo_pin,50) # 50 Hz (20 ms PWM period)
 
-servo = GPIO.PWM(22,50)
+pwm.start(7) # start PWM by rotating to 90 degrees
 
-servo.start(0)
-print("Waiting for 1 second")
-time.sleep(1)
+for ii in range(0,3):
+    pwm.ChangeDutyCycle(2.0) # rotate to 0 degrees
+    time.sleep(0.5)
+    pwm.ChangeDutyCycle(12.0) # rotate to 180 degrees
+    time.sleep(0.5)
+    pwm.ChangeDutyCycle(7.0) # rotate to 90 degrees
+    time.sleep(0.5)
 
-print("Rotating at inervals of 12 degrees")
-duty = 2
-while duty <= 17:
-    servo.ChangeDutyCycle(duty)
-    time.sleep(1)
-    duty = duty + 1
-
-print("Turning back to 0 degrees")
-servo.ChangeDutyCycle(2)
-time.sleep(1)
-servo.ChangeDutyCycle(0)
-
-servo.stop()
-GPIO.cleanup()
-print("Everything's cleaned up")
+pwm.ChangeDutyCycle(0) # this prevents jitter
+pwm.stop() # stops the pwm on 13
+GPIO.cleanup() # good practice when finished using a pin
