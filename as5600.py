@@ -1,10 +1,9 @@
-from machine import I2C,Pin
-from micropython import const
+import smbus
 from ustruct import unpack, pack
 from collections import namedtuple
 from time import sleep
 
-AS5600_id = const(0x36)  #Device ID
+AS5600_id = 0x36  #Device ID
 m12 = const((1<<12)-1)  #0xFFF
 
 
@@ -154,7 +153,7 @@ class AS5600:
         return s
                   
 
-i2c = I2C(0,scl=Pin(3),sda=Pin(2),freq=400000)
+i2c = smbus.SMBus(0)
 
   
 z = AS5600(i2c,AS5600_id)
