@@ -153,7 +153,7 @@ class AS5600:
         return s
                   
 
-i2c = smbus.SMBus(0)
+i2c = smbus.SMBus(1)
 z = AS5600(i2c,AS5600_id)
 z.scan()
 whatever = 89
