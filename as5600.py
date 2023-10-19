@@ -140,7 +140,6 @@ class AS5600:
     def magnet_status(self):
         s = "Magnet "
        # print(self.MD)
-        return
         if self.MD == 1:
             s += " detected"
         else:
