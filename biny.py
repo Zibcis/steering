@@ -1,6 +1,7 @@
-def DecimalToBinary(test_num):
-    return  [int(i) for i in list('{0:0b}'.format(test_num))]
-
+def DecimalToBinaryR1(test_num):
+    return  [int(i) for i in list('{0:04b}'.format(test_num))]
+def DecimalToBinaryR2(test_num):
+    return  [int(i) for i in list('{0:08b}'.format(test_num))]
 def binaryToDecimal(binary):
     return sum(val*(2**idx) for idx, val in enumerate(reversed(binary)))
 
@@ -20,6 +21,6 @@ def raw_angle(l):
     L1.append(l[2])
     L2.append(4)
     L2.append(154)
-    buff1 = DecimalToBinary(L1[0])
-    buff2 = DecimalToBinary(L1[1])
+    buff1 = DecimalToBinaryR1(L1[0])
+    buff2 = DecimalToBinaryR2(L1[1])
     print((360/4096)*binaryToDecimal(buff))
