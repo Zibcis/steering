@@ -1,16 +1,15 @@
 from Serwo_Parametrs import *
 import RPi.GPIO as GPIO
 import time
+
 class SerwoMotor:
 
-    def __init__(self, servo_pin, pwm_frequency):
-        self.pwm_frequency = pwm_frequency
-        self.pwm_frequency = GPIO.PWM(self.pwm_frequency)
-        self.servo_pin = servo_pin
+    def __init__(self):
+        self.pwm_frequency = 0
+        self.servo_pin = 0
 
     def configure(self, servo_pin, pwm_frequency):
         self.pwm_frequency = pwm_frequency
-        self.pwm_frequency = GPIO.PWM(self.pwm_frequency)
         self.servo_pin = servo_pin
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.servo_pin, GPIO.OUT)
@@ -25,3 +24,5 @@ class SerwoMotor:
 
     def stop(self):
         GPIO.cleanup()
+
+

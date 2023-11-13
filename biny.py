@@ -17,10 +17,13 @@ def raw_angle(l):
     buff1 = []
     buff2 = []
     i=0
+    L1.append(l[0])
     L1.append(l[1])
-    L1.append(l[2])
-    L2.append(4)
-    L2.append(154)
     buff1 = DecimalToBinaryR1(L1[0])
     buff2 = DecimalToBinaryR2(L1[1])
+    combine(buff1,buff)
+    combine(buff2,buff)
     print((360/4096)*binaryToDecimal(buff))
+    return((360/4096)*binaryToDecimal(buff))
+
+
